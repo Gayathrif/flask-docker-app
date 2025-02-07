@@ -1,30 +1,101 @@
-flask-docker-app
+# Flask Docker App
 
-Simple Flask Web Application with Docker Compose
-This project contains a simple Flask web application that responds with Hello, Gayathri C Nair & Register Number 2022BCD0011. The application is containerized using Docker and managed with Docker Compose, including a PostgreSQL database.
+## Simple Flask Web Application with Docker Compose
 
-Project Structure
+This project contains a simple Flask web application that responds with `Hello, Gayathri C Nair & Register Number 2022BCD0011`. The application is containerized using Docker and managed with Docker Compose, including a PostgreSQL database.
+
+## Project Structure
+```
 /
 ├── app.py              # Flask application
 ├── Dockerfile          # Docker configuration for web service
 ├── docker-compose.yml  # Docker Compose configuration
 ├── requirements.txt    # Python dependencies
 └── README.md           # Project documentation
-Prerequisites
-Install Docker: Follow instructions from Docker's official website.
-Install Docker Compose: Follow Docker Compose installation guide.
-Create a GitHub repository to store your project.
-Setup Instructions
-1. Clone the Repository
-Clone the repository to your local machine:
+```
 
+## Prerequisites
+- Install **Docker**: Follow instructions from [Docker's official website](https://docs.docker.com/get-docker/).
+- Install **Docker Compose**: Follow [Docker Compose installation guide](https://docs.docker.com/compose/install/).
+- Create a **GitHub repository** to store your project.
+
+## Setup Instructions
+
+### 1. Clone the Repository
+Clone the repository to your local machine:
+```sh
 git clone https://github.com/Gayathrif/flask-docker-app.git
 cd flask-docker-app
-2. Create a requirements.txt File
-Ensure you have a requirements.txt file with the necessary dependencies:
+```
 
+### 2. Create a `requirements.txt` File
+Ensure you have a `requirements.txt` file with the necessary dependencies:
+```
 flask
 psycopg2
+```
+
+### 3. Build and Run the Application
+#### a) Build the Docker images
+```sh
+docker-compose build
+```
+#### b) Start the services (web and database)
+```sh
+docker-compose up -d
+```
+#### c) Verify running containers
+Check if both `web` and `db` services are running:
+```sh
+docker ps
+```
+
+### 4. Access the Web Application
+Open your browser and navigate to:
+```
+http://localhost:5000
+```
+You should see the message: **Hello, Gayathri C Nair & Register Number 2022BCD0011**
+
+### 5. Connect to the Database
+To connect to the PostgreSQL database from a terminal:
+```sh
+docker exec -it <container_id> psql -U user -d testdb
+```
+Replace `<container_id>` with the actual ID of your PostgreSQL container (find it using `docker ps`).
+
+### 6. Stop and Remove Containers
+#### a) Stop the running containers
+```sh
+docker-compose down
+```
+#### b) Remove all containers, networks, and volumes (optional)
+```sh
+docker system prune -a
+```
+
+## Pushing the Project to GitHub
+If you haven’t pushed your project to GitHub yet, follow these steps:
+```sh
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/Gayathrif/flask-docker-app.git
+git push -u origin main
+```
+
+## Troubleshooting
+### 1. Check logs if something isn't working
+```sh
+docker-compose logs
+```
+### 2. Restart the services
+```sh
+docker-compose down && docker-compose up -d
+```
+
+
 3. Build and Run the Application
 a) Build the Docker images
 docker-compose build
